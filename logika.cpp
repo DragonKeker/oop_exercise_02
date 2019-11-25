@@ -1,11 +1,12 @@
 #include "logika.h"
-
- void logika::read(std::istream& is, logika& obj) {
+#include <bitset>
+#include <assert.h>
+/* void logika::read(std::istream& is, logika& obj) {
 	 is >> obj.field1 >> obj.field2;
  }
  void logika::write(std::ostream& os) {
 	 os << field1 << " " << field2 << "\n";
- }
+ }*/
 
 logika logika:: operator&(const logika& obj2)const
 {
@@ -136,15 +137,15 @@ void logika::_sravnenie( logika& obj2)
 
 	if (*this>(obj2))
 	{
-		std::cout<< "ed v 1 str >" << std::endl;
+		std::cout<< "Количество единиц в первой строке больше" << std::endl;
 	}
 	else if (*this<(obj2))
 	{
-		std::cout << "ed vo 2 str >"<< std::endl;
+		std::cout << "Количество единиц во второй строке больше"<< std::endl;
 	}
 	else 
 	{
-		std::cout<< "ed ravno" << std::endl;
+		std::cout<< "Количество единиц в строках равно" << std::endl;
 	}
 }; 
 
@@ -158,4 +159,28 @@ bool logika::_vkluch(const logika& obj2)const {
 
 void operator ""_out(const char* str, size_t size) {   
 	std::cout << str << std::endl;
+}
+
+unsigned long long operator ""_l(const char* str)
+{
+	unsigned long long result = 0;
+	size_t size = strlen(str);
+
+	for (size_t i = 0; i < size; ++i)
+	{
+		assert(str[i] == '1' || str[i] == '0');
+		result |= (str[i] - '0') << (size - i - 1);
+	}
+
+	return result;
+}
+
+std::istream& operator>> (std::istream& in, logika& obj) {
+	in >> obj.field1 >> obj.field2;
+	return in;
+}
+
+std::ostream& operator<< (std::ostream& out, const logika& obj) {
+	out << obj.field1 << " " << obj.field2 << "\n";
+	return out;
 }
