@@ -17,10 +17,10 @@ int main() {
 	std::cout << (obj1^obj2);
 	std::cout << (~obj1);
 	"Введите : k "_out;
-	scanf_s("%d", &k);
+	std::cin >> k;
 	std::cout << (obj1<<k);
 	"Введите : k "_out;
-	scanf_s("%d", &k);
+	std::cin >> k;
 	std::cout << (obj1>>k);
 	"Всего едениц в первой строке:"_out;
 	std::cout  << (obj1._count1()) << "\n";
