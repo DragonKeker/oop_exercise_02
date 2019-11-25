@@ -8,24 +8,29 @@ int main() {
 	int k;
 	logika obj1;
 	logika obj2;
-	"Vvedite dannie"_out;
-	obj1.read(std::cin, obj1);
-	obj2.read(std::cin, obj2);
-	(obj1&obj2).write(std::cout);
-	(obj1|obj2).write(std::cout);
-	(obj1^obj2).write(std::cout);
-	(~obj1).write(std::cout);
-	"Vvedite : k "_out;
+	logika obj3;
+	"Введите данные"_out;
+	std::cin >> obj1;
+	std::cin >> obj2;
+	std::cout << (obj1&obj2);
+	std::cout << (obj1|obj2);
+	std::cout << (obj1^obj2);
+	std::cout << (~obj1);
+	"Введите : k "_out;
 	scanf_s("%d", &k);
-	(obj1<<k).write(std::cout);
-	"Vvedite : k "_out;
+	std::cout << (obj1<<k);
+	"Введите : k "_out;
 	scanf_s("%d", &k);
-	(obj1>>k).write(std::cout);
-	"Vsego ed v 1 str:"_out;
+	std::cout << (obj1>>k);
+	"Всего едениц в первой строке:"_out;
 	std::cout  << (obj1._count1()) << "\n";
 	obj1._sravnenie(obj2);
 	if (obj1._vkluch(obj2))
-		 "Vkl"_out;
+		 "Включает"_out;
 	else
-		"Ne vkl"_out;
+		"Не включает"_out;
+
+	obj3.field1 = 101010110_l;
+	obj3.field2 = 101010111_l;
+	std::cout << obj3 << std::endl;
 }
