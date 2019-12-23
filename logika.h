@@ -26,6 +26,6 @@ public:
 	void  write(std::ostream&);*/
 };
 	void operator ""_out(const char* str, size_t size);
-	unsigned long long operator "" _l(const char* str);
+	logika operator "" _l(const char* str);
 
 #endif // D_LOGIKA_H_#pragma once
