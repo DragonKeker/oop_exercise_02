@@ -1,6 +1,8 @@
 #include "logika.h"
 #include <bitset>
 #include <assert.h>
+#include <math.h>
+#include <string.h>
 /* void logika::read(std::istream& is, logika& obj) {
 	 is >> obj.field1 >> obj.field2;
  }
@@ -161,19 +163,45 @@ void operator ""_out(const char* str, size_t size) {
 	std::cout << str << std::endl;
 }
 
-unsigned long long operator ""_l(const char* str)
+logika operator ""_l(const char* str)
 {
+	int  cnt=0, j=0;
+	logika result1;
 	unsigned long long result = 0;
-	size_t size = strlen(str);
+	char str1[65]="0", str2[65] = "0";
 
-	for (size_t i = 0; i < size; ++i)
+	size_t size = strlen(str);
+	for (j = 0; j < strlen(str); j++) {
+		if ((strlen(str) - j) > 64) {
+			str1[j] = str[j];
+		}
+		else { str2[cnt] = str[j];
+		cnt++;
+		}
+	};
+
+	size_t size1 = strlen(str1), size2 = strlen(str2);
+
+	for (size_t i = 0; i < size1; ++i)
 	{
-		assert(str[i] == '1' || str[i] == '0');
-		result |= (str[i] - '0') << (size - i - 1);
+		assert(str1[i] == '1' || str1[i] == '0');
+		result |= (str1[i] - '0') << (size1 - i - 1);
 	}
 
-	return result;
+	result1.field1 = result; 
+	result = 0;
+
+	for (size_t k = 0; k < size2; ++k)
+	{
+		assert(str2[k] == '1' || str2[k] == '0');
+		result |= (str2[k] - '0') << (size2 - k - 1);
+	}
+
+	result1.field2 = result;
+
+	return result1;
 }
+
 
 std::istream& operator>> (std::istream& in, logika& obj) {
 	in >> obj.field1 >> obj.field2;
