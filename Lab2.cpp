@@ -4,7 +4,6 @@
 #include "logika.h"
 
 int main() {
-	std::cout << 1_l << std::endl;
 	setlocale(LC_ALL, "RUSSIAN");
 	int k;
 	logika obj1;
